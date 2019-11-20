@@ -1,2 +1,1 @@
-# appsody-template-object-storage-tutorial
-Repo for a tutorial about Appsody and Cloud Object Storage
+Source files for creating an Appsody stack with template for IBM Cloud Object Storage operations.
