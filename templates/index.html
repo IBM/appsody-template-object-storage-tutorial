@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<b>Test the various operations on IBM Cloud Object Storage</b>
+<br></br>
+<div><h3>Message from server!</h3></div>
+<div>{{msg}}</div>
+<br></br>
+<div border=5>
+  <form action="/createbucket" method="GET" enctype="multipart/form-data">
+    <i><b>Create a bucket</b></i>
+    <table border=2>
+      <tr>
+        <td>Name:</td>
+        <td><input type="text" name="bucketname" value="" /></td>
+      </tr>
+      <tr>
+        <td colspan=2 align="center"><input type="submit" style="background-color:green;color:white"
+            value="Create Bucket" /></td>
+      </tr>
+    </table>
+  </form>
+</div>
+<br></br>
+<div border=5>
+  <form action="/listcontents" method="GET" >
+    <i><b>List bucket contents</b></i>
+    <table border=2>
+      <tr>
+        <td>Name:</td>
+        <td><input type="text" name="bucketname" value="" /></td>
+      </tr>
+      <tr>
+        <td colspan=2 align="center"><input type="submit" style="background-color:green;color:white"
+            value="List contents" /></td>
+      </tr>
+    </table>
+  </form>
+</div>
+<br></br>
+<div>
+  <form action="/upload" method="POST" enctype="multipart/form-data">
+    <table border=2>
+      <tr><i><b>Upload a file</b></i></tr>
+      <tr>
+        <td>Select a file for upload:</td>
+        <td><input type="file" name="file" /></td>
+      </tr>
+      <tr>
+        <td>Specify the bucket:</td>
+        <td>
+          <select name="buket">
+            {% for bucket in buckets %}
+            <option value="{{bucket.name}}">{{bucket.name}}</option>
+            {% endfor %}
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td align="center"><input type="submit" style="background-color:green;color:white" value="Upload" />
+        </td>
+      </tr>
+      </tr>
+    </table>
+  </form>
+</div>
+<br></br>
+<div>
+  <form action="/getobject" method="GET">
+    <table border=2>
+      <tr><i><b>Get an object</b></i></tr>
+      <tr>
+        <td>Bucket:</td>
+        <td>
+          <select name="buket">
+            {% for bucket in buckets %}
+            <option value="{{bucket.name}}">{{bucket.name}}</option>
+            {% endfor %}
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>File:</td>
+        <td>
+          <input type="text" name="filename" value="" />
+        </td>
+      </tr>
+      <tr>
+        <td colspan=2 align="center"><input style="background-color:green;color:white" type="submit" value="Get" /></td>
+      </tr>
+    </table>
+  </form>
+</div>
+<br></br>
+<div>
+  <form action="/delobject" method="GET">
+    <table border=2>
+      <tr><i><b>Delete file</b></i></tr>
+      <tr>
+        <td>Bucket:</td>
+        <td>
+          <select name="buket">
+            {% for bucket in buckets %}
+            <option value="{{bucket.name}}">{{bucket.name}}</option>
+            {% endfor %}
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>File:</td>
+        <td>
+          <input type="text" name="filename" value="" />
+        </td>
+      </tr>
+      <tr>
+        <td colspan=2 align="center"><input style="background-color:green;color:white" type="submit" value="Delete" /></td>
+      </tr>
+    </table>
+  </form>
+</div>
+<br></br>
+<div border=5>
+    <form action="/deletebucket" method="GET">
+      <i><b>Delete a bucket</b></i>
+      <table border=2>
+        <tr>
+          <td>Name:</td>
+          <td><input type="text" name="bucketname" value="" /></td>
+        </tr>
+        <tr>
+          <td colspan=2 align="center"><input type="submit" style="background-color:green;color:white"
+              value="Delete Bucket" /></td>
+        </tr>
+      </table>
+    </form>
+  </div>
+
+</html>
