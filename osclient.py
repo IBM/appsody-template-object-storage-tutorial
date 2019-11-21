@@ -16,7 +16,8 @@ credentials_1 = {
     'IAM_RESOURCE_ID': config.get('credentials', 'IAM_RESOURCE_ID'),
     'IBM_API_KEY_ID': config.get('credentials','IBM_API_KEY_ID'),
     'ENDPOINT': config.get('credentials','ENDPOINT'),
-    'IBM_AUTH_ENDPOINT': config.get('credentials','IBM_AUTH_ENDPOINT')
+    'IBM_AUTH_ENDPOINT': config.get('credentials','IBM_AUTH_ENDPOINT'),
+    'COS_BUCKET_LOCATION': config.get('credentials','COS_BUCKET_LOCATION')
     }
 print(credentials_1)
 
@@ -110,7 +111,7 @@ def create_bucket(bucket_name):
     try:
         resp = cosres.Bucket(bucket_name).create(
             CreateBucketConfiguration={
-                "LocationConstraint":"us-east-standard"
+                "LocationConstraint":credentials_1['COS_BUCKET_LOCATION']
             }
         )
         print("Bucket: {0} created!".format(bucket_name))
