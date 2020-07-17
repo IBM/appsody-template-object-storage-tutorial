@@ -1,5 +1,5 @@
 from flask import Flask, redirect, render_template, request
-from werkzeug import secure_filename
+from werkzeug.utils import secure_filename
 import os
 import sys
 from flasgger import Swagger
@@ -86,7 +86,7 @@ def upload_file():
       f = request.files['file']
       print(request.form)
       bucket = request.form["buket"]
-      # save to object storage 
+      # save to object storage
       resp = osclient.put_file(bucket, f.filename, f.read());
       bukets = osclient.get_buckets()
       return render_template("index.html", buckets=bukets, msg=resp)
@@ -121,7 +121,7 @@ def get_object():
      f.write(contents.read());
      f.close()
      return render_template("display.html", filename=name, textcontent=txtcontent)
-   
+
 
 
 @app.route('/delobject', methods = ['GET'])
@@ -208,5 +208,3 @@ def getimage():
   else:
       print("no image found!")
       return "";
-
-
